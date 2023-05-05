@@ -1,4 +1,4 @@
-str = "{[(a-b)(a+b)]}/[(a+b*c)]-(a-c)*(a+c)"
+str = "{[(a-b)(a+b)]}/[(a+b*c)]-(a-z)*(a+c)"
 
 dict={
     "{" : "A",
@@ -9,12 +9,19 @@ dict={
     ")" : "F"
 }
 
+ch = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+bracket_1 = ['{','[','(']
+bracket_2 = ['}',']',')']
+
 arr_A=[]
 arr_B=[]
 arr_C=[]
 arr_D=[]
 arr_E=[]
 arr_F=[]
+
+arr_sign = []
 
 k=0
 str_1=[]
@@ -51,6 +58,7 @@ if (len(arr_A)!=len(arr_B))or(len(arr_C)!=len(arr_D))or(len(arr_E)!=len(arr_F)):
     cond_1 = False
 
 if (cond_1):
+    cond_2 = True
     for i in range(0, len(arr_A)):
         cond_fig_square = False
         for j in range(arr_A[i], arr_B[i]):
@@ -59,6 +67,7 @@ if (cond_1):
                 
         if (cond_fig_square==False):
             print("Error with figure-squre brackets")
+            cond_2 = False
 
     for i in range(0, len(arr_A)):
         cond_fig_fig = True
@@ -68,6 +77,7 @@ if (cond_1):
                 
         if (cond_fig_fig==False):
             print("Error with figure-figure brackets")
+            cond_2 = False
             
     for i in range(0, len(arr_A)):
         cond_fig_empty = True
@@ -77,6 +87,7 @@ if (cond_1):
                 
         if (cond_fig_empty==True):
             print("Error with figure-poor brackets")
+            cond_2 = False
             
     for i in range(0, len(arr_C)):
         cond_square_circl = False
@@ -86,6 +97,7 @@ if (cond_1):
                 
         if (cond_square_circl==False):
             print("Error with scuare-circl brackets")
+            cond_2 = False
    
     for i in range(0, len(arr_C)):
             cond_square_square = False
@@ -95,6 +107,7 @@ if (cond_1):
                     
             if (cond_square_square==True):
                 print("Error with scuare-square brackets")
+                cond_2 = False
                 
     for i in range(0, len(arr_C)):
             cond_square_fig = False
@@ -104,6 +117,7 @@ if (cond_1):
                     
             if (cond_square_fig==True):
                 print("Error with scuare-figure brackets")
+                cond_2 = False
 
     for i in range(0, len(arr_E)):
             cond_circle_empty = False
@@ -113,5 +127,16 @@ if (cond_1):
                     
             if (cond_circle_empty==True):
                 print("Error with circle-empty brackets")
-
-#print(str_1)
+                cond_2 = False
+    if cond_2:
+        cond_3=True
+        for i in range(0, len(str)):
+            if str[i] in ['+','-','*','/']:
+                arr_sign.append(i)
+        for i in range(0, len(arr_sign)):
+            cond_term = False
+            if ((str[arr_sign[i]+1] in ch) or (str[arr_sign[i]+1] in bracket_1))and((str[arr_sign[i]-1] in ch) or (str[arr_sign[i]-1] in bracket_2)):
+                cond_term = True
+            if (cond_term == False):
+                print("Error vith term")
+                cond_3=False
