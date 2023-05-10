@@ -1,4 +1,6 @@
-str = "{[(a-b)(a+b)]}/[(a+b*c)]-(a-z)*(a+c)"
+str = "{[(a+b)][ab](a+m)}/[([a+m-(d+t)])]"
+
+print("input: "+str+'\n')
 
 dict={
     "{" : "A",
@@ -140,3 +142,7 @@ if (cond_1):
             if (cond_term == False):
                 print("Error vith term")
                 cond_3=False
+                
+if (cond_1 and cond_2 and cond_3):
+    print("the bracket entry corresponds to the given grammar")
+
