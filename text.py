@@ -1,4 +1,5 @@
-str = "{[(a+b)]-[a+b]+(a+m)}/[(a+m-d+t)]"
+#str = "{(a+b-c)(a-c)}+(a+b)-[(k+t)(a+b)]"
+str = input(":= ")
 
 print("input: "+str+'\n')
 
@@ -45,6 +46,8 @@ cond_3 = True # внутри квадратных норма
 cond_4 = True # внутри фигурных норма
 cond_5 = True # нет однобуквенных в круглых
 cond_6 = True # проблема с расстановкой букв и знаков
+cond_7 = True # внутри фигурных обязательны квадратные
+cond_8 = True # внутри фигурных бесскобочное выражение
         
 for i in range(0, len(str_1)):
     if str_1[i]=='A':
@@ -60,7 +63,7 @@ for i in range(0, len(str_1)):
     elif str_1[i]=="F":
         arr_F.append(i)
     
-print(str_1)
+#print(str_1)
 
 if (len(arr_A)!=len(arr_B))or(len(arr_C)!=len(arr_D))or(len(arr_E)!=len(arr_F)):
     print("Error, it is not a correct bracket sequence")
@@ -98,8 +101,40 @@ if (cond_1 and cond_2 and cond_3 and cond_5 and cond_6):
             if (str_1[j]=='A' and str_1[j-1]!='A'):
                 cond_4=False
                 print("внутри фигурных скобок есть фигурные нелишние")
+                
+if (cond_1 and cond_2 and cond_3 and cond_5 and cond_6 and cond_4):
+    for i in range (0, len(arr_A)):
+        t_c = False
+        for j in range(arr_A[i]+1, arr_B[i]):
+            if (str_1[j]=='C'):
+                t_c=True
+        if (t_c==False):
+            cond_7=False
+            print("внутри фигурных нет обязательных квадратных")
+            
+if (cond_1 and cond_2 and cond_3 and cond_5 and cond_6 and cond_4 and cond_7):
+    for i in range (0, len(arr_A)):
+        t_c = 0
+        for p in range(0, len(arr_C)):
+            if(arr_C[p]>arr_A[i]):
+                t_c+=arr_D[p]-arr_C[p]+1
+                #print("квадратная ", t_c)
+                
+        for p in range(0, len(arr_E)):
+            if(arr_E[p]>arr_A[i]):
+                t_c+=arr_F[p]-arr_E[p]+1
+                #print("круглая ", t_c)
+                
+        for p in range(0, len(str)):
+            if (str[p]in arr_sign)and(str[p-1]in[')',']','}'])and(str[p+1]in ['(','[','{']):
+                t_c+=1
+                #print("знак ",t_c)
+                
+        if (t_c < arr_B[i]-arr_A[i]-1):
+            print("внутри фигурных скобок есть бесскобочные выражения", t_c, arr_B[i]-arr_A[i])
+            cond_8 = False
 
                 
-if (cond_1 and cond_2 and cond_3 and cond_4 and cond_5 and cond_6):
+if (cond_1 and cond_2 and cond_3 and cond_4 and cond_5 and cond_6 and cond_7 and cond_8):
     print("the bracket entry corresponds to the given grammar")
 
