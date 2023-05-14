@@ -1,7 +1,7 @@
 from tkinter import *
 root = Tk()
 
-root.geometry("1800x500")
+root.geometry("1800x800")
 root.title("Синтаксический анализатор")
 
 def Hello(event):
@@ -230,5 +230,15 @@ label_result = Label(root, text="результат проверки")
 label_result.configure(font=("Courier", 18, "bold"))
 label_result.pack()
 label_result.place(x=775, y=400)
+
+label_true = Label(root, text="Правильная запись: {[(a-b)](a+b)}/[(a+b*c )]-(a-c)*(a+c)")
+label_true.configure(font=("Courier", 18, "bold"))
+label_true.pack()
+label_true.place(x=500, y=450)
+
+label_false = Label(root, text="Неправильная запись: {(a+b)*(a-b)}/[a+b/c]((c)-(b-c*d))")
+label_false.configure(font=("Courier", 18, "bold"))
+label_false.pack()
+label_false.place(x=505, y=500)
 
 root.mainloop()
